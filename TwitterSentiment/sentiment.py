@@ -18,3 +18,4 @@ publictweets=api.search('Bitcoin')
 for tweet in publictweets:
         print(tweet.text)
         analysis=TextBlob(tweet.text)
+        print(analysis.sentiment)
