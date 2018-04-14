@@ -1,5 +1,13 @@
 import tweepy
 from textblob import TextBlob
+import pandas
+def sentanlysis(pol):
+    if pol.sentiment.polarity > 0:
+        return 'positive: '
+    elif pol.sentiment.polarity == 0:
+        return 'neutral: '
+    else:
+        return 'negative: '
 
 consumer_key='Du99gyfNpzmskSulKnamtqYE5'
 consumer_secret='oi2EquBgHTxfuT8JNdAcCLvgjxLBFK8dMtmF9ZLCv23lZOhYqT'
@@ -13,9 +21,12 @@ auth.set_access_token(access_token,access_token_secret)
 
 api=tweepy.API(auth)
 
-publictweets=api.search('Bitcoin')
+publictweets=api.search('Trump')
 
+tweetsfile=open("tweets.csv","w")
 for tweet in publictweets:
-        print(tweet.text)
-        analysis=TextBlob(tweet.text)
-        print(analysis.sentiment)
+    analysis=TextBlob(tweet.text)
+    tweetstr=str(tweet.text.encode("utf-8"))
+    tweetsfile.write(sentanlysis(analysis)+tweetstr+',\n')
+
+tweetsfile.close()
