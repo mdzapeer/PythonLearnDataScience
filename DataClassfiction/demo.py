@@ -1,6 +1,8 @@
 from sklearn import tree
 
 clf = tree.DecisionTreeClassifier()
+#rngforest=tree.RandomForestClassifier()
+#gauss=tree.GaussianProcessClassifier()
 
 # CHALLENGE - create 3 more classifiers...
 # 1
@@ -18,6 +20,8 @@ Y = ['male', 'male', 'female', 'female', 'male', 'male', 'female', 'female',
 
 # CHALLENGE - ...and train them on our data
 clf = clf.fit(X, Y)
+#rngforest = rngforest.fit(x,y)
+#gauss=gauss.fit(x,y)
 
 prediction = clf.predict([[190, 70, 43]])
 
